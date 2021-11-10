@@ -1,6 +1,8 @@
 package com.xu.game;
 
-import com.xu.game.entity.User;
+import com.xu.game.model.BroadcastManager;
+import com.xu.game.model.User;
+import com.xu.game.model.UserManager;
 import com.xu.game.protocol.GameMsgProtocol;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -11,16 +13,13 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * hero_history
  */
 public class ServerHandler extends SimpleChannelInboundHandler<Object> {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServerHandler.class);
-    private static final ChannelGroup clients = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-    private static final Map<Integer, User> USER_MAP = new HashMap<>();
+
+
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -30,8 +29,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
             int userId = cmd.getUserId();
             String heroAvatar = cmd.getHeroAvatar();
 
-            User user = new User(userId, heroAvatar);
-            USER_MAP.put(userId, user);
+            UserManager.addUser(new User(userId, heroAvatar));
 
             GameMsgProtocol.UserEntryResult.Builder builder = GameMsgProtocol.UserEntryResult.newBuilder();
             builder.setUserId(userId);
@@ -40,10 +38,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
             ctx.channel().attr(AttributeKey.valueOf("userId")).set(userId);
 
             GameMsgProtocol.UserEntryResult result = builder.build();
-            clients.writeAndFlush(result);
+            BroadcastManager.broadcast(result);
         } else if (msg instanceof GameMsgProtocol.WhoElseIsHereCmd) {
             GameMsgProtocol.WhoElseIsHereResult.Builder builder = GameMsgProtocol.WhoElseIsHereResult.newBuilder();
-            for (User user : USER_MAP.values()) {
+            for (User user : UserManager.listUser()) {
                 if (null == user) {
                     continue;
                 }
@@ -66,7 +64,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
             builder.setMoveToPosY(cmd.getMoveToPosY());
 
             GameMsgProtocol.UserMoveToResult result = builder.build();
-            clients.writeAndFlush(result);
+            BroadcastManager.broadcast(result);
         }
     }
 
@@ -74,7 +72,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
         // ctx.channel().attr(AttributeKey.valueOf("userId")).set();
-        clients.add(ctx.channel());
+        BroadcastManager.addChannel(ctx.channel());
     }
 
     @Override
@@ -91,14 +89,16 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
             if (null == userId) {
                 return;
             }
-            USER_MAP.remove(userId);
-            clients.remove(ctx.channel());
+
+            UserManager.removeUserByUserId(userId);
+
+            BroadcastManager.removeChannel(ctx.channel());
 
             GameMsgProtocol.UserQuitResult.Builder builder = GameMsgProtocol.UserQuitResult.newBuilder();
             builder.setQuitUserId(userId);
 
             GameMsgProtocol.UserQuitResult result = builder.build();
-            clients.writeAndFlush(result);
+            BroadcastManager.broadcast(result);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }

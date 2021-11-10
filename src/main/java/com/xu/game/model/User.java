@@ -1,4 +1,4 @@
-package com.xu.game.entity;
+package com.xu.game.model;
 
 /**
  * hero_history
