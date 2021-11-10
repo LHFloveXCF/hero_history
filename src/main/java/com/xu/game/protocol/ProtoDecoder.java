@@ -32,6 +32,9 @@ public class ProtoDecoder extends ChannelInboundHandlerAdapter {
             case GameMsgProtocol.MsgCode.WHO_ELSE_IS_HERE_CMD_VALUE:
                 cmd = GameMsgProtocol.WhoElseIsHereCmd.parseFrom(bytes);
                 break;
+            case GameMsgProtocol.MsgCode.USER_MOVE_TO_CMD_VALUE:
+                cmd = GameMsgProtocol.UserMoveToCmd.parseFrom(bytes);
+                break;
         }
 
         if (null != cmd) {

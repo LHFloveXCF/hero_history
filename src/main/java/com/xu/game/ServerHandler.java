@@ -6,6 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.util.AttributeKey;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,8 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
             builder.setUserId(userId);
             builder.setHeroAvatar(heroAvatar);
 
+            ctx.channel().attr(AttributeKey.valueOf("userId")).set(userId);
+
             GameMsgProtocol.UserEntryResult result = builder.build();
             clients.writeAndFlush(result);
         } else if (msg instanceof GameMsgProtocol.WhoElseIsHereCmd) {
@@ -51,12 +54,54 @@ public class ServerHandler extends SimpleChannelInboundHandler<Object> {
             }
             GameMsgProtocol.WhoElseIsHereResult result = builder.build();
             ctx.writeAndFlush(result);
+        } else if (msg instanceof GameMsgProtocol.UserMoveToCmd) {
+            Integer userId = (Integer) ctx.channel().attr(AttributeKey.valueOf("userId")).get();
+            if (null == userId) {
+                return;
+            }
+            GameMsgProtocol.UserMoveToCmd cmd = (GameMsgProtocol.UserMoveToCmd) msg;
+            GameMsgProtocol.UserMoveToResult.Builder builder = GameMsgProtocol.UserMoveToResult.newBuilder();
+            builder.setMoveUserId(userId);
+            builder.setMoveToPosX(cmd.getMoveToPosX());
+            builder.setMoveToPosY(cmd.getMoveToPosY());
+
+            GameMsgProtocol.UserMoveToResult result = builder.build();
+            clients.writeAndFlush(result);
         }
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
+        // ctx.channel().attr(AttributeKey.valueOf("userId")).set();
         clients.add(ctx.channel());
+    }
+
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) {
+        if (null == ctx) {
+            return;
+        }
+        try {
+            super.handlerRemoved(ctx);
+            Integer userId = (Integer) ctx.channel().attr(AttributeKey.valueOf("userId")).get();
+
+            LOGGER.info("---------------{}", userId);
+
+            if (null == userId) {
+                return;
+            }
+            USER_MAP.remove(userId);
+            clients.remove(ctx.channel());
+
+            GameMsgProtocol.UserQuitResult.Builder builder = GameMsgProtocol.UserQuitResult.newBuilder();
+            builder.setQuitUserId(userId);
+
+            GameMsgProtocol.UserQuitResult result = builder.build();
+            clients.writeAndFlush(result);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
     }
 }
