@@ -7,4 +7,5 @@
 3.消息的编码解码   
 4.登录、移动  
 5.代码重构  
-    - 去除冗余的if else instance of
+    - 去除冗余的if else instance of  
+    - 重构ServerHandler，抽象出消息工厂
