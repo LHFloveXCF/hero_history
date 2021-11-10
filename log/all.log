@@ -3909,3 +3909,157 @@ java.lang.ClassCastException: io.netty.handler.codec.http.DefaultFullHttpRespons
 [10:43:33,623] [INFO] ServerHandler.channelRead0 --> 收到的字节-----0, 17, 0, 0, 8, 1, 18, 11, 72, 101, 114, 111, 95, 72, 97, 109, 109, 101, 114, 
 [10:43:33,624] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = BinaryWebSocketFrame(data: PooledUnsafeDirectByteBuf(ridx: 0, widx: 4, cap: 4))
 [10:43:33,624] [INFO] ServerHandler.channelRead0 --> 收到的字节-----0, 2, 0, 2, 
+[14:49:19,920] [INFO] ServerMain.main --> 服务器启动成功@@
+[14:49:29,265] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[14:49:29,266] [WARN] DefaultChannelPipeline.onUnhandledInboundException --> An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.lang.ClassCastException: com.xu.game.protocol.GameMsgProtocol$UserEntryCmd cannot be cast to io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame
+	at com.xu.game.ServerHandler.channelRead0(ServerHandler.java:20)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at com.xu.game.protocol.ProtoDecoder.channelRead(ProtoDecoder.java:35)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.channel.ChannelInboundHandlerAdapter.channelRead(ChannelInboundHandlerAdapter.java:93)
+	at io.netty.handler.codec.http.websocketx.Utf8FrameValidator.channelRead(Utf8FrameValidator.java:82)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:324)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:311)
+	at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:425)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:276)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+[14:50:08,621] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[14:50:08,622] [WARN] DefaultChannelPipeline.onUnhandledInboundException --> An exceptionCaught() event was fired, and it reached at the tail of the pipeline. It usually means the last handler in the pipeline did not handle the exception.
+java.lang.ClassCastException: com.xu.game.protocol.GameMsgProtocol$UserEntryCmd cannot be cast to io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame
+	at com.xu.game.ServerHandler.channelRead0(ServerHandler.java:20)
+	at io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at com.xu.game.protocol.ProtoDecoder.channelRead(ProtoDecoder.java:35)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.channel.ChannelInboundHandlerAdapter.channelRead(ChannelInboundHandlerAdapter.java:93)
+	at io.netty.handler.codec.http.websocketx.Utf8FrameValidator.channelRead(Utf8FrameValidator.java:82)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:324)
+	at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:296)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:163)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:714)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.lang.Thread.run(Thread.java:748)
+[14:50:14,621] [INFO] ServerMain.main --> 服务器启动成功@@
+[14:50:16,873] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[14:50:39,786] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[14:50:47,648] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[14:59:17,187] [INFO] ServerMain.main --> 服务器启动成功@@
+[14:59:33,255] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[14:59:36,371] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:04:40,483] [INFO] ServerMain.main --> 服务器启动成功@@
+[15:04:45,006] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:04:47,623] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[15:06:23,026] [INFO] ServerMain.main --> 服务器启动成功@@
+[15:34:48,996] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:34:50,717] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[15:35:01,805] [INFO] ServerMain.main --> 服务器启动成功@@
+[15:35:07,494] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:35:08,982] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[15:35:17,278] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[15:35:20,633] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:36:47,517] [INFO] ServerMain.main --> 服务器启动成功@@
+[15:36:49,054] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:36:55,174] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[15:38:55,431] [INFO] ServerMain.main --> 服务器启动成功@@
+[15:38:59,207] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[15:38:59,226] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = 
+[15:39:00,969] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:39:00,970] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = 
+[15:40:05,163] [INFO] ServerMain.main --> 服务器启动成功@@
+[15:40:09,148] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 2
+heroAvatar: "Hero_Shaman"
+
+[15:40:09,163] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = 
+[15:40:10,668] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = userId: 1
+heroAvatar: "Hero_Hammer"
+
+[15:40:10,669] [INFO] ServerHandler.channelRead0 --> 收到客户端消息，msg = 

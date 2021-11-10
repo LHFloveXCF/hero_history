@@ -1,5 +1,7 @@
 package com.xu.game;
 
+import com.xu.game.protocol.ProtoDecoder;
+import com.xu.game.protocol.ProtoEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -32,6 +34,8 @@ public class ServerMain {
                         .addLast(new HttpServerCodec())
                         .addLast(new HttpObjectAggregator(65535))
                         .addLast(new WebSocketServerProtocolHandler("/websocket"))
+                        .addLast(new ProtoDecoder())
+                        .addLast(new ProtoEncoder())
                         .addLast(new ServerHandler());
             }
         }).bind(9999);
